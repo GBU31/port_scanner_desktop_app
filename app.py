@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import socket
+import ipaddress
 
 
 class Ui_MainWindow(object):
@@ -94,8 +95,11 @@ class Ui_MainWindow(object):
         ports = [443, 80, 8080, 8000, 3000, 445, 9050, 123, 21, 19, 23, 22, 8081]
         open_ports = []
         ip = self.lineEdit.text()
-        if len('000.000.000.000') < len(ip):
+        try:
+            ip_address_obj = ipaddress.ip_address(ip)
+        except:
             self.label_3.setText('ex: 127.0.0.1')
+            
         open_ports.clear()
         for port in ports:
             try:
