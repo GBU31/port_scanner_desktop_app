@@ -94,8 +94,6 @@ class Ui_MainWindow(object):
         ports = [443, 80, 8080, 8000, 3000, 445, 9050, 123, 21, 19, 23, 22, 8081]
         open_ports = []
         ip = self.lineEdit.text()
-        if len('000.000.000.000') < len(ip):
-            self.label_3.setText('ex: 127.0.0.1')
         open_ports.clear()
         for port in ports:
             try:
@@ -105,6 +103,7 @@ class Ui_MainWindow(object):
                     open_ports.append(port)
             except:
                 pass
+        
         if len(open_ports) == 0:
             self.label_3.setText('All ports are closed :(')
         else:
