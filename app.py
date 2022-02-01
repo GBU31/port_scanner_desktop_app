@@ -3,8 +3,7 @@ import socket
 
 
 class Ui_MainWindow(object):
-
-
+    
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(705, 600)
