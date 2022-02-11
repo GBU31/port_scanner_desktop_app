@@ -1,9 +1,12 @@
+#! /bin/python3
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 import socket
 
 
 class Ui_MainWindow(object):
-    
+
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(705, 600)
@@ -102,7 +105,6 @@ class Ui_MainWindow(object):
                     open_ports.append(port)
             except:
                 pass
-        
         if len(open_ports) == 0:
             self.label_3.setText('All ports are closed :(')
         else:
@@ -112,6 +114,23 @@ class Ui_MainWindow(object):
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
+    style = """
+    QWidget {
+        background: #262d27
+    }
+    QLabel#label_2, QLabel#label_4{
+        color: #fff;
+    }
+
+    QLineEdit {
+        padding: 1px;
+        color: #fff;
+        border: 2px solid #fff;
+        border-radius: 8px;
+        text-align: auto;
+    }
+    """
+    app.setStyleSheet(style)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
