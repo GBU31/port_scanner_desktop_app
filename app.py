@@ -1,7 +1,6 @@
 #! /bin/python3
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-import socket
 from PyQt5.QtGui import QIcon
 
 
