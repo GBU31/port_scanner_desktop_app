@@ -2,11 +2,10 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import socket
+from PyQt5.QtGui import QIcon
 
 
 class Ui_MainWindow(object):
-
-
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(705, 600)
@@ -21,7 +20,6 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.b1 = QtWidgets.QPushButton(self.centralwidget)
         self.b1.setGeometry(QtCore.QRect(440, 180, 131, 41))
-        self.b1.setStyleSheet("color :rgb(173, 127, 168);")
         self.b1.setObjectName("b1")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(200, 10, 371, 91))
@@ -93,23 +91,10 @@ class Ui_MainWindow(object):
         
         
     def on_click(self):
-        ports = [443, 80, 8080, 8000, 3000, 445, 9050, 123, 21, 19, 23, 22, 8081]
-        open_ports = []
+        import scan
+
         ip = self.lineEdit.text()
-        open_ports.clear()
-        for port in ports:
-            try:
-                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-                    s.settimeout(0.5)
-                    s.connect((ip, port))
-                    open_ports.append(port)
-            except:
-                pass
-        if len(open_ports) == 0:
-            self.label_3.setText('All ports are closed :(')
-        else:
-            print(open_ports)
-            self.label_3.setText(f'{open_ports}')
+        self.label_3.setText(str(scan.Scan(ip)))
 
 if __name__ == "__main__":
     import sys
@@ -122,6 +107,15 @@ if __name__ == "__main__":
         color: #fff;
     }
 
+    QPushButton {
+        background:black;
+        color:#fff;
+    }
+    QPushButton:hover {
+        background:purple;
+        color:#fff;
+    }
+
     QLineEdit {
         padding: 1px;
         color: #fff;
@@ -129,8 +123,13 @@ if __name__ == "__main__":
         border-radius: 8px;
         text-align: auto;
     }
+
+    QLineEdit:hover {
+        background-color:black;
+    }
     """
     app.setStyleSheet(style)
+    app.setWindowIcon(QIcon('icon.ico'))
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
