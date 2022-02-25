@@ -2,7 +2,7 @@ import socket
 
 
 def Scan(ip):
-    ports = [443, 80, 8080, 8000, 3000, 445, 9050, 123, 21, 19, 23, 22, 8081]
+    ports = [443, 80, 8080, 8000, 3000, 445, 9050, 21, 19, 23, 22, 8081]
     open_ports = []
     open_ports.clear()
     for port in ports:
