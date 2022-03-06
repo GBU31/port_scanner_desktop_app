@@ -91,7 +91,6 @@ class Ui_MainWindow(object):
         
     def on_click(self):
         import scan
-
         ip = self.lineEdit.text()
         self.label_3.setText(str(scan.Scan(ip)))
 
