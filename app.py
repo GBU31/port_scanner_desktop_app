@@ -2,7 +2,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QIcon
-
+import core
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -90,9 +90,9 @@ class Ui_MainWindow(object):
         
         
     def on_click(self):
-        import scan
         ip = self.lineEdit.text()
-        self.label_3.setText(str(scan.Scan(ip)))
+        scan = core.Scan(ip=ip)
+        self.label_3.setText(str(scan.run()))
 
 if __name__ == "__main__":
     import sys
